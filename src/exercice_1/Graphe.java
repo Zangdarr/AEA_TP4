@@ -51,12 +51,16 @@ public class Graphe implements GrapheInt {
 
     @Override
     public void addEdge(Vertex v1, Vertex v2,int p) throws VertexNotFoundException {
-        this.list_edges.add(new Edge(v1,v2, p));
+        String key_str = (v1.getId() < v2.getId())? v1.getString() + v2.getString() : v2.getString() + v1.getString();
+        int key_int = Integer.parseInt(key_str);
+        this.list_edges.add(new Edge(v1,v2, p,key_int));
     }
 
     @Override
     public void addEdge(int i, int j, int p) throws VertexNotFoundException {
-        this.list_edges.add(new Edge(list_vertex.get(i), list_vertex.get(j), p));
+        String key_str = (i<j)? i+""+j : j+""+i;
+        int key_int = Integer.parseInt(key_str);
+        this.list_edges.add(new Edge(list_vertex.get(i), list_vertex.get(j), p,key_int ));
     }
 
     @Override
