@@ -76,20 +76,6 @@ public class Graphe implements GrapheInt {
 class EdgesComparator implements Comparator<Edge> {
     @Override
     public int compare(Edge a, Edge b) {
-        
-        boolean a1_inf_b1   = a.getVertex_1().getId() < b.getVertex_1().getId(),
-                a2_inf_b2   = a.getVertex_2().getId() < b.getVertex_2().getId(),
-                a1_equal_b1 = a.getVertex_1().getId() == b.getVertex_1().getId(),
-                a2_equal_b2 = a.getVertex_2().getId() == b.getVertex_2().getId();
-
-        //impossible to be equal
-        if(a1_equal_b1 && a2_equal_b2)
-            try {
-                throw new ComparatorException("Les deux arêtes comparé sont les mêmes");
-            } catch (ComparatorException e) {
-                System.out.println(e.getMessage());
-                return -1;
-            }
-        return (a1_inf_b1) ? -1 : (a1_equal_b1)? (a2_inf_b2)? -1 : 1 : 1; 
+        return a.getPoids() < b.getPoids() ? -1 : a.getPoids() == b.getPoids() ? 0 : 1;         
     }
 }
