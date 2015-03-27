@@ -7,7 +7,7 @@ import java.util.Iterator;
 public class Graphe implements GrapheInt {
 
     //ATTRIBUTS
-    private ArrayList<Integer> list_vertex;
+    private ArrayList<Vertex> list_vertex;
     private ArrayList<Edge> list_edges;
     
     
@@ -19,16 +19,16 @@ public class Graphe implements GrapheInt {
     public Graphe() {
         super();
         this.list_edges  = new ArrayList<Edge>();
-        this.list_vertex = new ArrayList<Integer>();
+        this.list_vertex = new ArrayList<Vertex>();
     }
 
     /**
      * @param list_edge : liste des arêtes du graphe
      */
-    public Graphe(ArrayList<Edge> list_Edges, ArrayList<Integer> list_Integers) {
+    public Graphe(ArrayList<Edge> list_Edges, ArrayList<Vertex> list_Vertex) {
         super();
         this.list_edges  = list_Edges;
-        this.list_vertex = list_Integers;
+        this.list_vertex = list_Vertex;
     }
     
     
@@ -43,7 +43,7 @@ public class Graphe implements GrapheInt {
 
     @Override
     public void addVertexNumber(int i) throws VertexAlreadyExistException {
-        this.list_vertex.add(i);
+        this.list_vertex.add(new Vertex(i));
     }
 
     @Override
