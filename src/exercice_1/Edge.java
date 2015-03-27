@@ -4,36 +4,30 @@ public class Edge {
     
     //ATTRIBUTS
     
-    private int from;
-    private int to;
-    private int id;
+    private int vertex_1;
+    private int vertex_2;
     
     
     //CONSTRUCTEUR
     
     /**
-     * @param from
-     * @param to
-     * @param id
+     * @param vertex_1
+     * @param vertex_2
      */
-    public Edge(int from, int to) {
+    public Edge(int vertex_1, int vertex_2) {
         super();
-        this.from = from;
-        this.to = to;
-        this.id = Integer.parseInt(from + "" + to);
+        this.vertex_1 = vertex_1;
+        this.vertex_2 = vertex_2;
     }
     
     
     //GETTER
     
-    protected int getFrom() {
-        return from;
+    protected int getVertex_1() {
+        return vertex_1;
     }
-    protected int getTo() {
-        return to;
-    }
-    protected int getId() {
-        return id;
+    protected int getVertex_2() {
+        return vertex_2;
     }
     
     
