@@ -83,6 +83,12 @@ public class Graphe implements GrapheInt {
         //key calculator
         String key_str = (i<j)? i+""+j : j+""+i;
         int key_int = Integer.parseInt(key_str);
+        
+        //if the key already exist into the list
+        if(edgeContains(key_int))
+            throw new EdgeAlreadyExistException();
+        
+        //add this edge
         this.list_edges.add(new Edge(list_vertex.get(i), list_vertex.get(j), p,key_int ));
     }
 
