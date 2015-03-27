@@ -113,6 +113,11 @@ public class Graphe implements GrapheInt {
     public boolean vertexContains(int id){
         return list_vertex.containsKey(id);
     }
+    
+    public int getVertexQuantity(){
+        return list_vertex.size();
+    }
+    
 
 }
 
