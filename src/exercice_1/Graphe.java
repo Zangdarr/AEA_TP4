@@ -43,14 +43,12 @@ public class Graphe implements GrapheInt {
 
     @Override
     public void addVertexNumber(int i) throws VertexAlreadyExistException {
-        // TODO Auto-generated method stub
-        
+        this.list_vertex.add(i);
     }
 
     @Override
     public void addEdge(Vertex v1, Vertex v2) throws VertexNotFoundException {
-        // TODO Auto-generated method stub
-        
+        this.list_edges.add(new Edge(v1,v2));
     }
 
     @Override
