@@ -4,7 +4,7 @@ public class Vertex {
 
     //ATTRIBUTS
     
-    private int number;
+    private String name;
 
     
     //CONSTRUCTOR
@@ -12,15 +12,15 @@ public class Vertex {
     /**
      * @param number : vertex number
      */
-    public Vertex(int number) {
+    public Vertex(String name) {
         super();
-        this.number = number;
+        this.name = name;
     }
 
     //METHODES
 
-    public int getNumber() {
-        return number;
+    public String getString() {
+        return name;
     }
 
     
