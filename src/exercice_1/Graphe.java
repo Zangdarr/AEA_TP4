@@ -57,7 +57,12 @@ public class Graphe implements GrapheInt {
     }
 
     @Override
-    public void addEdge(Vertex v1, Vertex v2,int p) throws VertexNotFoundException {
+    public void addEdge(Vertex v1, Vertex v2,int p) throws VertexNotFoundException, EdgeAlreadyExistException {
+        //If the vertex does not exist
+        if(! (list_vertex.containsKey(v1.getId()) && list_vertex.containsKey(v2.getId())))
+            throw new VertexNotFoundException();
+        
+        //key calculator
         String key_str = (v1.getId() < v2.getId())? v1.getString() + v2.getString() : v2.getString() + v1.getString();
         int key_int = Integer.parseInt(key_str);
         this.list_edges.add(new Edge(v1,v2, p,key_int));
