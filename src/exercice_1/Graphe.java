@@ -40,8 +40,10 @@ public class Graphe implements GrapheInt {
 
     @Override
     public void addVertex() {
-        int size = list_vertex.size();
-        list_vertex.put(size, new Vertex(size,"" + size));
+        int key = 0;
+        while(list_vertex.containsKey(key))
+            key++;
+        list_vertex.put(key, new Vertex(key,"" + key));
     }
 
     @Override
