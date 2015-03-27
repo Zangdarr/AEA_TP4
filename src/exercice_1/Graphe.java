@@ -59,8 +59,7 @@ public class Graphe implements GrapheInt {
 
     @Override
     public Vertex getVertex(int i) {
-        // TODO Auto-generated method stub
-        return null;
+        return list_vertex.get(i);
     }
 
     @Override
