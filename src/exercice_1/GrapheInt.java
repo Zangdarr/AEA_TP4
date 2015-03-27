@@ -2,7 +2,6 @@ package exercice_1;
 
 import java.util.Iterator;
 
-import sun.security.provider.certpath.Vertex;
 
 public interface GrapheInt {
     public void addVertex();
