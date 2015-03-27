@@ -2,7 +2,7 @@ package exercice_1;
 
 import java.util.Iterator;
 
-public class Exercice_2_Main {
+public class Exercice1_Main {
 
     
     
