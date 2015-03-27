@@ -1,13 +1,14 @@
 package exercice_1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 
 public class Graphe implements GrapheInt {
 
     //ATTRIBUTS
-    private ArrayList<Vertex> list_vertex;
+    private HashMap<Integer,Vertex> list_vertex;
     private ArrayList<Edge> list_edges;
     
     
