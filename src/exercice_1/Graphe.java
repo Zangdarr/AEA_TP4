@@ -20,13 +20,13 @@ public class Graphe implements GrapheInt {
     public Graphe() {
         super();
         this.list_edges  = new ArrayList<Edge>();
-        this.list_vertex = new ArrayList<Vertex>();
+        this.list_vertex = new HashMap<Integer,Vertex>();
     }
 
     /**
      * @param list_edge : liste des arêtes du graphe
      */
-    public Graphe(ArrayList<Edge> list_Edges, ArrayList<Vertex> list_Vertex) {
+    public Graphe(ArrayList<Edge> list_Edges, HashMap<Integer,Vertex> list_Vertex) {
         super();
         this.list_edges  = list_Edges;
         this.list_vertex = list_Vertex;
