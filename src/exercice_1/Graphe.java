@@ -103,6 +103,13 @@ public class Graphe implements GrapheInt {
         return list_edges.iterator();
     }
     
+    public boolean edgeContains(int id){
+        for (Iterator<Edge> it = list_edges.iterator(); it.hasNext();)
+            if(((Edge) it.next()).getId() == id)
+                return true;
+        return false;
+    }
+    
 
 }
 
