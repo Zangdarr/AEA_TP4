@@ -64,8 +64,7 @@ public class Graphe implements GrapheInt {
 
     @Override
     public Iterator<Edge> getSortedEdgeIterator() {
-        // TODO Auto-generated method stub
-        return null;
+        return list_edges.iterator();
     }
 
 }
