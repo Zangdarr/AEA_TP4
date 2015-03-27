@@ -46,7 +46,7 @@ public class Graphe implements GrapheInt {
 
     @Override
     public void addVertexNumber(int i) throws VertexAlreadyExistException {
-        this.list_vertex.put(i,new Vertex(i,"i"));
+        this.list_vertex.put(i,new Vertex(i,"" + i));
     }
 
     @Override
