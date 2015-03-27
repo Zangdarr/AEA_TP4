@@ -110,6 +110,9 @@ public class Graphe implements GrapheInt {
         return false;
     }
     
+    public boolean vertexContains(int id){
+        return list_vertex.containsKey(id);
+    }
 
 }
 
