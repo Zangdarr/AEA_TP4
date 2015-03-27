@@ -50,13 +50,13 @@ public class Graphe implements GrapheInt {
     }
 
     @Override
-    public void addEdge(Vertex v1, Vertex v2) throws VertexNotFoundException {
-        this.list_edges.add(new Edge(v1,v2));
+    public void addEdge(Vertex v1, Vertex v2,int p) throws VertexNotFoundException {
+        this.list_edges.add(new Edge(v1,v2, p));
     }
 
     @Override
-    public void addEdge(int i, int j) throws VertexNotFoundException {
-        this.list_edges.add(new Edge(list_vertex.get(i), list_vertex.get(j)));
+    public void addEdge(int i, int j, int p) throws VertexNotFoundException {
+        this.list_edges.add(new Edge(list_vertex.get(i), list_vertex.get(j), p));
     }
 
     @Override
