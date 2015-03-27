@@ -4,9 +4,9 @@ public class Edge {
     
     //ATTRIBUTS
     
-    private Vertex vertex_1;
-    private Vertex vertex_2;
-    
+    private Vertex vertex_1,
+                   vertex_2;
+    private int    poids;
     
     //CONSTRUCTEUR
     
@@ -14,10 +14,11 @@ public class Edge {
      * @param vertex_1
      * @param vertex_2
      */
-    public Edge(Vertex vertex_1, Vertex vertex_2) {
+    public Edge(Vertex vertex_1, Vertex vertex_2, int poids) {
         super();
         this.vertex_1 = vertex_1;
         this.vertex_2 = vertex_2;
+        this.poids    = poids;
     }
     
     
@@ -28,6 +29,9 @@ public class Edge {
     }
     protected Vertex getVertex_2() {
         return vertex_2;
+    }
+    protected int getPoids() {
+        return poids;
     }
     
     
