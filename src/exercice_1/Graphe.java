@@ -48,6 +48,11 @@ public class Graphe implements GrapheInt {
 
     @Override
     public void addVertexNumber(int i) throws VertexAlreadyExistException {
+        //if the vertex already exist
+        if(list_vertex.containsKey(i))
+            throw new VertexAlreadyExistException();
+        
+        //add this vertex
         this.list_vertex.put(i,new Vertex(i,"" + i));
     }
 
