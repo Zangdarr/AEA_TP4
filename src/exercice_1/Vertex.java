@@ -4,23 +4,29 @@ public class Vertex {
 
     //ATTRIBUTS
     
+    private int id;
     private String name;
-
     
     //CONSTRUCTOR
     
     /**
-     * @param number : vertex number
+     * @param id   : vertex id
+     * @param name : vertex name
      */
-    public Vertex(String name) {
+    public Vertex(int id,String name) {
         super();
+        this.id = id;
         this.name = name;
     }
 
-    //METHODES
+    //GETTER
 
     public String getString() {
         return name;
+    }
+
+    public int getId() {
+        return id;
     }
 
     
