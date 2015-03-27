@@ -1,10 +1,39 @@
 package exercice_1;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
-import sun.security.provider.certpath.Vertex;
 
 public class Graphe implements GrapheInt {
+
+    //ATTRIBUTS
+    private ArrayList<Integer> list_vertex;
+    private ArrayList<Edge> list_edges;
+    
+    
+    //CONSTRUCTEURS
+    
+    /**
+     * Initialize the edges list and the vertex list
+     */
+    public Graphe() {
+        super();
+        this.list_edges  = new ArrayList<Edge>();
+        this.list_vertex = new ArrayList<Integer>();
+    }
+
+    /**
+     * @param list_edge : liste des arêtes du graphe
+     */
+    public Graphe(ArrayList<Edge> list_Edges, ArrayList<Integer> list_Integers) {
+        super();
+        this.list_edges  = list_Edges;
+        this.list_vertex = list_Integers;
+    }
+    
+    
+    
+    //METHODES
 
     @Override
     public void addVertex() {
