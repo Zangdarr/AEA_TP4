@@ -39,12 +39,12 @@ public class Graphe implements GrapheInt {
     @Override
     public void addVertex() {
         int size = list_vertex.size();
-        list_vertex.put(size, new Vertex("vertex_" + size));
+        list_vertex.put(size, new Vertex("" + size));
     }
 
     @Override
     public void addVertexNumber(int i) throws VertexAlreadyExistException {
-        this.list_vertex.add(new Vertex(i));
+        this.list_vertex.put(i,new Vertex("i"));
     }
 
     @Override
