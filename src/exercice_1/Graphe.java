@@ -38,8 +38,8 @@ public class Graphe implements GrapheInt {
 
     @Override
     public void addVertex() {
-        // TODO Auto-generated method stub
-        
+        int size = list_vertex.size();
+        list_vertex.put(size, new Vertex("vertex_" + size));
     }
 
     @Override
