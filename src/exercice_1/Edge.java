@@ -4,8 +4,8 @@ public class Edge {
     
     //ATTRIBUTS
     
-    private int vertex_1;
-    private int vertex_2;
+    private Vertex vertex_1;
+    private Vertex vertex_2;
     
     
     //CONSTRUCTEUR
@@ -14,7 +14,7 @@ public class Edge {
      * @param vertex_1
      * @param vertex_2
      */
-    public Edge(int vertex_1, int vertex_2) {
+    public Edge(Vertex vertex_1, Vertex vertex_2) {
         super();
         this.vertex_1 = vertex_1;
         this.vertex_2 = vertex_2;
@@ -23,10 +23,10 @@ public class Edge {
     
     //GETTER
     
-    protected int getVertex_1() {
+    protected Vertex getVertex_1() {
         return vertex_1;
     }
-    protected int getVertex_2() {
+    protected Vertex getVertex_2() {
         return vertex_2;
     }
     
