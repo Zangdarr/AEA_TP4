@@ -43,12 +43,16 @@ public class Exercice1_Main {
             System.out.println(e2.getMessage());
         }
         
-        //on prend l'arête de poids la plus faible qui appartient à l'ensemble déjà présent dans tmp
         
-        for (Iterator<Edge> iterator = it ;iterator.hasNext() && g.getVertexQuantity() > tmp.getVertexQuantity();) {
+        /******* MAIN ******/
+        //on prend l'arête de poids la plus faible qui appartient à l'ensemble déjà présent dans tmp
+                                                                                                                                                                                                                                                                                
+        for (Iterator<Edge> iterator = it ; iterator.hasNext() && g.getVertexQuantity() > tmp.getVertexQuantity();) {
             Edge e = (Edge) iterator.next();
+            
             boolean v1_exist_inside = tmp.vertexContains(e.getVertex_1().getId()),
                     v2_exist_inside = tmp.vertexContains(e.getVertex_2().getId());
+
             //si on a un sommet présent dans l'ensemble et l'autre non
             if( (v1_exist_inside && !v2_exist_inside) || (! v1_exist_inside && v2_exist_inside) ){
                 //si on a v1 alors on rajoute v2
@@ -57,14 +61,14 @@ public class Exercice1_Main {
                         tmp.addVertexNumber(e.getVertex_2().getId());
                         tmp.addEdge(e.getVertex_1(), e.getVertex_2(), e.getPoids());
                     } catch (VertexAlreadyExistException | VertexNotFoundException | EdgeAlreadyExistException e1) {System.out.println(e1.getMessage());}
-                    it = g.getSortedEdgeIterator();
+                    iterator = g.getSortedEdgeIterator();
                 }
                 else{
                     try {
                         tmp.addVertexNumber(e.getVertex_1().getId());
                         tmp.addEdge(e.getVertex_1(), e.getVertex_2(), e.getPoids());
                     } catch (VertexAlreadyExistException | VertexNotFoundException | EdgeAlreadyExistException e1) {System.out.println(e1.getMessage());}
-                    it = g.getSortedEdgeIterator();
+                    iterator = g.getSortedEdgeIterator();
                 }
             }
             
