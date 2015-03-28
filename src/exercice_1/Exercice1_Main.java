@@ -24,11 +24,16 @@ public class Exercice1_Main {
         
     }
     
-    
+    /**
+     * Applique l'algorithme de calcul d'arbre recouvrant de poids minimum PRIM sur un graphe
+     * @param g : graphe sur lequel sera appliqué l'algorithme
+     * @return
+     */
     public static Graphe Algo_PRIM(final Graphe g) {
         Graphe tmp = new Graphe();
+        /****** INIT *****/
+        Iterator<Edge> it = g.getSortedEdgeIterator();
         
-        Iterator it = g.getSortedEdgeIterator();
         if(!it.hasNext()){
             System.out.println("ERROR : Liste vide");
         }
