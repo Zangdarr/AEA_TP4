@@ -122,6 +122,15 @@ public class Graphe implements GrapheInt {
         return list_edges.size();
     }
     
+    public int getPoids(){
+        int p = 0;
+        for (Iterator<Edge> iterator = list_edges.iterator(); iterator.hasNext();) {
+            Edge edge = (Edge) iterator.next();
+            p += edge.getPoids();
+        }
+        return p;
+    }
+    
 }
 
 class EdgesComparator implements Comparator<Edge> {
