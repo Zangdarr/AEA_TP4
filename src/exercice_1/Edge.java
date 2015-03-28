@@ -27,16 +27,16 @@ public class Edge {
     
     //GETTER
     
-    protected Vertex getVertex_1() {
+    public Vertex getVertex_1() {
         return vertex_1;
     }
-    protected Vertex getVertex_2() {
+    public Vertex getVertex_2() {
         return vertex_2;
     }
-    protected int getPoids() {
+    public int getPoids() {
         return poids;
     }
-    protected int getId() {
+    public int getId() {
         return id;
     }
     
