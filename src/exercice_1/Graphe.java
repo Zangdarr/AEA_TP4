@@ -118,7 +118,10 @@ public class Graphe implements GrapheInt {
         return list_vertex.size();
     }
     
-
+    public int getEdgeQuantity(){
+        return list_edges.size();
+    }
+    
 }
 
 class EdgesComparator implements Comparator<Edge> {
