@@ -131,6 +131,21 @@ public class Graphe implements GrapheInt {
         return p;
     }
     
+    public String toString(){
+        
+        String result = "Graphe :\n - poids : " + getPoids() + "\n - Liste des sommets : \n";
+        for(Integer i : list_vertex.keySet()){
+            result += i + " ";
+        }
+        
+        result += "\n - Liste des arêtes :\n";
+        for(Edge i : list_edges){
+            result += i.getVertex_1().getString() + " " + i.getVertex_2().getString() + " " + i.getPoids() + "\n";
+        }
+        
+        return result;
+        
+    }
 }
 
 class EdgesComparator implements Comparator<Edge> {
