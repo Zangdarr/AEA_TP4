@@ -1,5 +1,8 @@
 package exercice_1;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Iterator;
 
 public class Exercice1_Main {
@@ -7,6 +10,17 @@ public class Exercice1_Main {
     
     
     public static void main(String[] args) {
+        try {
+            Graphe g = fileToGraph("graphe_test");
+            Graphe result = Algo_PRIM(g);
+            
+            System.out.println("START " + g.toString() + "\n\n\n" + "RESULT " + result.toString());
+            //System.out.println("GRAPHE G : \n" + g.toString() + "\n\n\nGRAPHE RESULT : \n" + result.toString());
+        
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
         
     }
     
