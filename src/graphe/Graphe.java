@@ -189,6 +189,14 @@ public class Graphe implements GrapheInt {
         return list_edges.iterator();
         
     }
+    public Iterator<Edge> getEdgeIterator() {
+        return list_edges.iterator();
+    }
+    
+    public ArrayList<Edge> getEdgeList(){
+        return this.list_edges;
+    }
+    
 }
 
 class EdgesComparator implements Comparator<Edge> {
