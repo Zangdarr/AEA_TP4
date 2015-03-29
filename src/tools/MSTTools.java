@@ -70,6 +70,22 @@ public class MSTTools {
         return result;
 
     }
+
+
+    /**
+     * Applique l'algorithme de calcul d'arbre recouvrant de poids minimum de KRUSKAL sur un graphe
+     * @param g : graphe sur lequel sera appliqué l'algorithme
+     * @return
+     */
+    public static Graphe runKRUSKAL(final Graphe g) {
+        Graphe result = new Graphe();
+
+
+
+
+
+        return result;
+    }
         
         return tmp;
         
