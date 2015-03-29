@@ -1,4 +1,4 @@
-package exercice_1;
+package graphe;
 
 import java.util.Iterator;
 

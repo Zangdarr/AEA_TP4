@@ -8,8 +8,8 @@ import java.util.Iterator;
 import exceptions.EdgeAlreadyExistException;
 import exceptions.VertexAlreadyExistException;
 import exceptions.VertexNotFoundException;
-import exercice_1.Edge;
-import exercice_1.Graphe;
+import graphe.Edge;
+import graphe.Graphe;
 
 
 public class Exercice1_Main {
