@@ -135,6 +135,11 @@ public class Graphe implements GrapheInt {
         return p;
     }
     
+    public String toStringMinimal(){
+        String result = "Graphe :\n - poids : " + getPoids() + "\n - nombre de sommet : " + getVertexQuantity() + "\n - nombre d'arête : " + getEdgeQuantity();
+        return result;
+    }
+    
     public String toString(){
         
         String result = "Graphe :\n - poids : " + getPoids() + "\n - Liste des sommets : \n";
