@@ -2,6 +2,10 @@ package exercice_1;
 
 import java.util.Iterator;
 
+import exceptions.EdgeAlreadyExistException;
+import exceptions.VertexAlreadyExistException;
+import exceptions.VertexNotFoundException;
+
 
 public interface GrapheInt {
     public void addVertex();

@@ -1,4 +1,4 @@
-package exercice_1;
+package exceptions;
 
 public class VertexNotFoundException extends Exception {
 

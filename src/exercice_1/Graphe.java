@@ -6,6 +6,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import exceptions.EdgeAlreadyExistException;
+import exceptions.VertexAlreadyExistException;
+import exceptions.VertexNotFoundException;
+
 
 public class Graphe implements GrapheInt {
 

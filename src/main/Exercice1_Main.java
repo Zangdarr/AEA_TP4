@@ -5,11 +5,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
 
+import exceptions.EdgeAlreadyExistException;
+import exceptions.VertexAlreadyExistException;
+import exceptions.VertexNotFoundException;
 import exercice_1.Edge;
-import exercice_1.EdgeAlreadyExistException;
 import exercice_1.Graphe;
-import exercice_1.VertexAlreadyExistException;
-import exercice_1.VertexNotFoundException;
 
 
 public class Exercice1_Main {
