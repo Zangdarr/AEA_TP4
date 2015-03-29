@@ -2,11 +2,15 @@ package tools;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
 
 import exceptions.EdgeAlreadyExistException;
 import exceptions.VertexAlreadyExistException;
 import exceptions.VertexNotFoundException;
+import graphe.Edge;
 import graphe.Graphe;
 
 public class GraphTools {
@@ -46,5 +50,33 @@ public class GraphTools {
         buff.close();
         
         return tmp;
+    }
+
+
+    
+    public static void graphToFile(String filename, Graphe g) throws IOException {
+        Iterator<Edge> it = g.getSortedEdgeIteratorByFirstVertex();
+        
+        StringBuffer graphe_txt = new StringBuffer("1");
+        
+        //iterator trié donc le premier sommet est le numéro 1
+        int currentFirst = 1,
+            nextID = -1;
+        
+        for (Iterator<Edge> iterator = it; iterator.hasNext();) {
+            Edge edge = iterator.next();
+            nextID = edge.getVertex_1().getId();
+            if(nextID != currentFirst){
+                graphe_txt.append('\n');
+                graphe_txt.append(nextID);
+                currentFirst = nextID;
+            }
+            graphe_txt.append(" " + edge.getVertex_2().getId() + " " + edge.getPoids());
+        }
+        
+        PrintWriter p = new PrintWriter(new FileWriter(filename));
+        
+        p.write(graphe_txt.toString());
+        p.close();
     }
 }
