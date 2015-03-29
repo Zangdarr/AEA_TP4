@@ -85,7 +85,8 @@ public class Graphe implements GrapheInt {
             throw new VertexNotFoundException();
         
         //key calculator
-        String key_str = (v1.getId() < v2.getId())? v1.getString() + v2.getString() : v2.getString() + v1.getString();
+        boolean isV1V2 = v1.getId() < v2.getId();
+        String key_str = (isV1V2)? v1.getString() + v2.getString() : v2.getString() + v1.getString();
         int key_int = Integer.parseInt(key_str);
         
         //if the key already exist into the list
@@ -93,7 +94,11 @@ public class Graphe implements GrapheInt {
             throw new EdgeAlreadyExistException();
         
         //add this edge
-        this.list_edges.add(new Edge(v1,v2, p,key_int));
+        if(isV1V2)
+            this.list_edges.add(new Edge(v1,v2, p,key_int));
+        else
+            this.list_edges.add(new Edge(v2,v1, p,key_int));
+
     }
 
     @Override
@@ -103,7 +108,8 @@ public class Graphe implements GrapheInt {
             throw new VertexNotFoundException();
 
         //key calculator
-        String key_str = (i<j)? i+""+j : j+""+i;
+        boolean isIJ = i<j;
+        String key_str = (isIJ)? i+""+j : j+""+i;
         int key_int = Integer.parseInt(key_str);
         
         //if the key already exist into the list
@@ -111,7 +117,11 @@ public class Graphe implements GrapheInt {
             throw new EdgeAlreadyExistException("Erreur : L'arête entre ces deux sommets existe déjà : " + "v1 :" + i + " v2 : " + j);
         
         //add this edge
-        this.list_edges.add(new Edge(list_vertex.get(i), list_vertex.get(j), p,key_int ));
+        if(isIJ)
+            this.list_edges.add(new Edge(list_vertex.get(i), list_vertex.get(j), p,key_int ));
+        else
+            this.list_edges.add(new Edge(list_vertex.get(j), list_vertex.get(i), p,key_int ));
+
     }
 
     @Override
