@@ -25,7 +25,11 @@ public class RandomGraphGenerator implements RandomGraphGeneratorInt {
 
         //Ajout des arêtes
         SecureRandom randGen = new SecureRandom();
-        int N = (int)Math.pow(n, 4);
+        int N = 0;
+        if(n < 10)
+            N = (int)Math.pow(n, 4);
+        else 
+            N = (int)Math.pow(10, 4);
         float proba = 0;
         for (int i = 1; i < n; ++i) {
             //System.out.println("c " +  i + " " + result.getEdgeQuantity());
