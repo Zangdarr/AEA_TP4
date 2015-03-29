@@ -15,7 +15,7 @@ public class RandomGraphGenerator implements RandomGraphGeneratorInt {
 
         //Ajout des n sommets
         try {
-            for (int i = 0; i < n; i++) {
+            for (int i = 1; i < n+1; i++) {
                 result.addVertexNumber(i);
             }
         } catch (VertexAlreadyExistException e) {
