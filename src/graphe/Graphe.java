@@ -183,11 +183,24 @@ public class Graphe implements GrapheInt {
         return result;
         
     }
+
+    public Iterator<Edge> getSortedEdgeIteratorByFirstVertex() {
+        Collections.sort(list_edges, new FirstVertexComparator());
+        return list_edges.iterator();
+        
+    }
 }
 
 class EdgesComparator implements Comparator<Edge> {
     @Override
     public int compare(Edge a, Edge b) {
         return a.getPoids() < b.getPoids() ? -1 : a.getPoids() == b.getPoids() ? 0 : 1;         
+    }
+}
+
+class FirstVertexComparator implements Comparator<Edge> {
+    @Override
+    public int compare(Edge a, Edge b) {
+        return a.getVertex_1().getId() < b.getVertex_1().getId() ? -1 : a.getVertex_1().getId() == b.getVertex_1().getId() ? 0 : 1;         
     }
 }
