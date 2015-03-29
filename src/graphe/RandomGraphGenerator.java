@@ -27,13 +27,15 @@ public class RandomGraphGenerator implements RandomGraphGeneratorInt {
         SecureRandom randGen = new SecureRandom();
         int N = (int)Math.pow(n, 4);
         float proba = 0;
-        for (int i = 0; i < n-1; i++) {
-            for (int j = i+1; j < n; j++) {
+        for (int i = 1; i < n; ++i) {
+            //System.out.println("c " +  i + " " + result.getEdgeQuantity());
+            for (int j = i+1; j < n+1; ++j) {
                 proba = randGen.nextFloat();
                 if(proba < p){
                     try {
-                        result.addEdge(i, j, randGen.nextInt(N));
-                    } catch (VertexNotFoundException | EdgeAlreadyExistException e) {System.out.println("Erreur lors de la génération des arêtes : " + e.getMessage()); }
+                        //System.out.print("a");
+                        result.addEdge(i, j, 1 + randGen.nextInt(N));
+                    } catch (VertexNotFoundException | EdgeAlreadyExistException e) {System.out.println("Erreur lors de la génération des arêtes." + e.getMessage()); }
                 }
 
             }
