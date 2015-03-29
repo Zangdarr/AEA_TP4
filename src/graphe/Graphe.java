@@ -60,6 +60,24 @@ public class Graphe implements GrapheInt {
         this.list_vertex.put(i,new Vertex(i,"" + i));
     }
 
+    /**
+     * Ajoute une arête au graphe. Si les sommets liée à cette arête n'existe pas, ils seront crées.
+     * @param edge
+     * @throws VertexNotFoundException
+     * @throws EdgeAlreadyExistException
+     */
+    public void addEdge(Edge edge) throws VertexNotFoundException, EdgeAlreadyExistException{
+        Vertex v1 = edge.getVertex_1();
+        Vertex v2 = edge.getVertex_2();
+
+        if(!list_vertex.containsKey(v1.getId()))
+            list_vertex.put(v1.getId(), v1);
+        if(!list_vertex.containsKey(v2.getId()))
+            list_vertex.put(v2.getId(), v2);
+        
+        addEdge(v1, v2, edge.getPoids());
+    }
+    
     @Override
     public void addEdge(Vertex v1, Vertex v2,int p) throws VertexNotFoundException, EdgeAlreadyExistException {
         //If the vertex does not exist
