@@ -90,7 +90,7 @@ public class Graphe implements GrapheInt {
         
         //if the key already exist into the list
         if(edgeContains(key_int))
-            throw new EdgeAlreadyExistException();
+            throw new EdgeAlreadyExistException("Erreur : L'arête entre ces deux sommets existe déjà : " + "v1 :" + i + " v2 : " + j);
         
         //add this edge
         this.list_edges.add(new Edge(list_vertex.get(i), list_vertex.get(j), p,key_int ));
