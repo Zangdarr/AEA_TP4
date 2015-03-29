@@ -41,6 +41,8 @@ public class Edge {
     }
     
     
-    
+    public String toString(){
+        return "Edge id,  p : Edge " + id + " "+ vertex_1.getId() + " " + vertex_2.getId() + " "+ poids;
+    }
     
 }
