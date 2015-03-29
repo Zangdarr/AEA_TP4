@@ -1,12 +1,15 @@
 package tools;
 
-import java.util.Iterator;
-
 import exceptions.EdgeAlreadyExistException;
+import exceptions.GrapheException;
 import exceptions.VertexAlreadyExistException;
 import exceptions.VertexNotFoundException;
 import graphe.Edge;
 import graphe.Graphe;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 
 public class MSTTools {
 
