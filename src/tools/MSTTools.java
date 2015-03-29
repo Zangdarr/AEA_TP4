@@ -86,8 +86,68 @@ public class MSTTools {
 
         return result;
     }
+    /**
+     * Applique l'algorithme de calcul d'arbre recouvrant de poids minimum de KRUSKAL sur un graphe
+     * @param g : graphe sur lequel sera appliqué l'algorithme
+     * @return
+     * @throws EdgeAlreadyExistException 
+     * @throws VertexNotFoundException 
+     */
+    public static Graphe runPRIM(final Graphe g) throws VertexNotFoundException, EdgeAlreadyExistException {
+        Graphe result = new Graphe();
+
+        ArrayList<Edge> list_edge = g.getEdgeList();
+        Collections.shuffle(list_edge);
+
+        ArrayList<Integer> vertex_marked = new ArrayList<Integer>();
+        vertex_marked.add(list_edge.get(0).getVertex_1().getId());
+
+        boolean notEND = true;
+
+        int bestWeight = Integer.MAX_VALUE;
+        int bestEdge   = -1;
+
+        //tant qu'on a pas finit
+        while(notEND){
+
+            //si on ne trouve pas d'arête lors de la boucle for -> FIN
+            notEND = false;
+
+            //on cherche la prochaine arête extérieure de point minimum adjacente à l'ensemble de sommet déjà présent.
+            for(int i = 0; i<list_edge.size(); ++i){
+                Edge tmp_edge = list_edge.get(i);
+                boolean containsV1 = vertex_marked.contains(tmp_edge.getVertex_1().getId()),
+                        containsV2 = vertex_marked.contains(tmp_edge.getVertex_2().getId());
+                if((containsV1 || containsV2) && (!containsV1 || !containsV2)){
+                    int tmp_poids = tmp_edge.getPoids();
+                    if(tmp_poids < bestWeight){
+                        bestWeight = tmp_poids;
+                        bestEdge = i;
+                        notEND = true;
+                    }
+                }
+            }
+            
+            if(notEND){
+                //l'arête optimal
+                Edge selected_edge = list_edge.get(bestEdge);
+                System.out.println(selected_edge.toString());
+                //on l'ajoute au graphe
+                result.addEdge(selected_edge);
+                //on la retire des arêtes restantes
+                list_edge.remove(bestEdge);
+                //on met à jour la liste des vertex marqués
+                int newVertexId = (vertex_marked.contains(selected_edge.getVertex_1().getId()))?selected_edge.getVertex_2().getId():selected_edge.getVertex_1().getId(); 
+                vertex_marked.add(newVertexId);
+                //réinitisation du meilleur poids au max
+                bestWeight = Integer.MAX_VALUE;
+            }
+            
+        }
         
-        return tmp;
         
+        
+        
+        return result;
     }
 }
