@@ -3,6 +3,8 @@ package main;
 import java.io.IOException;
 
 import exceptions.EdgeAlreadyExistException;
+import exceptions.GrapheException;
+import exceptions.VertexAlreadyExistException;
 import exceptions.VertexNotFoundException;
 import graphe.Graphe;
 import graphe.RandomGraphGenerator;
@@ -12,11 +14,8 @@ import tools.MSTTools;
 public class Exercice2_Main {
 
     public static void main(String[] args) {
-        RandomGraphGenerator gen = new RandomGraphGenerator();
-        System.out.println("Génération du graphe en cours...\n");
-        Graphe g = gen.generateErdosRenyiGraph(100, (float) 0.5);
-        
-        System.out.println("\nApplication de l'algorithme PRIM...\n\n");
+        exemplePRIM(400, (float)0.8);
+    }
         Graphe result = new Graphe();
         try {
             result = MSTTools.runPRIM(g);
