@@ -92,6 +92,7 @@ public class MSTTools {
      * @throws GrapheException 
      */
     public static Graphe runKRUSKAL(final Graphe g) throws VertexNotFoundException, EdgeAlreadyExistException, GrapheException {
+        System.out.println("KRUSKAL's running...");
         long start = System.nanoTime();
         
         /****** INIT *****/
@@ -108,7 +109,7 @@ public class MSTTools {
         }
 
         long end = System.nanoTime();
-        System.out.println("Temps d'exécution de PRIM : " + (end-start)/Math.pow(10, 9));
+        System.out.println("done.\nExecution time : " + (end-start)/Math.pow(10, 9));
 
         return result;
     }
