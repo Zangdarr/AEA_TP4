@@ -14,7 +14,7 @@ import tools.MSTTools;
 public class Exercice2_Main {
 
     public static void main(String[] args) {
-        exemplePRIM(400, (float)0.8);
+        exemplePRIM();
     }
         Graphe result = new Graphe();
         try {
