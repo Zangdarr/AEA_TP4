@@ -91,14 +91,57 @@ public class MSTTools {
      * @throws VertexNotFoundException 
      * @throws GrapheException 
      */
-    public static Graphe runKRUSKAL(final Graphe g) {
+    public static Graphe runKRUSKAL(final Graphe g) throws VertexNotFoundException, EdgeAlreadyExistException, GrapheException {
+        long start = System.nanoTime();
+        
+        /****** INIT *****/
         Graphe result = new Graphe();
+        Iterator<Edge> it = g.getSortedEdgeIterator();
+        if(!it.hasNext())
+            throw new GrapheException();
+        result.addEdge(it.next());
 
+        for (Iterator<Edge> iterator = it;iterator.hasNext();) {
+            Edge edge = iterator.next();
+            if(isAcyclique(result.getEdgeList(), edge))
+                result.addEdge(edge);
+        }
 
-
-
+        long end = System.nanoTime();
+        System.out.println("Temps d'exécution de PRIM : " + (end-start)/Math.pow(10, 9));
 
         return result;
+    }
+    private static boolean isAcyclique(ArrayList<Edge> edgeList, Edge edge) {
+        edgeList.add(edge);
+        boolean hasCycle = searchCycle(edge.getVertex_1().getId(), edge.getVertex_1().getId(), edge.getVertex_2().getId(), edgeList);
+
+        return !hasCycle;
+    }
+
+
+    private static boolean searchCycle(int origin, int current_id, int previous_id,  ArrayList<Edge> edgeList) {
+        for (Iterator<Integer> iterator = getVertexNeighbors(edgeList,current_id ,previous_id); iterator.hasNext();){
+            int id = iterator.next();
+            if(origin == id)
+                return true;
+            else
+                return searchCycle(origin, id, current_id, edgeList);
+        }
+        return false;
+    }
+
+    public static Iterator<Integer> getVertexNeighbors(ArrayList<Edge> edgeList, int current_id, int previous_id){
+        ArrayList<Integer> result = new ArrayList<Integer>();
+
+        for (Iterator<Edge> iterator = edgeList.iterator(); iterator.hasNext();) {
+            Edge edge = iterator.next();
+            if(edge.getVertex_1().getId() == current_id && edge.getVertex_2().getId() != previous_id)
+                result.add(edge.getVertex_2().getId());
+            if(edge.getVertex_2().getId() == current_id && edge.getVertex_2().getId() != previous_id)
+                result.add(edge.getVertex_1().getId());
+        }
+        return result.iterator();
     }
 
 
