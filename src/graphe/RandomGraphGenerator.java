@@ -1,6 +1,7 @@
 package graphe;
 
 import java.security.SecureRandom;
+import java.util.Random;
 
 import exceptions.EdgeAlreadyExistException;
 import exceptions.VertexAlreadyExistException;
@@ -24,7 +25,7 @@ public class RandomGraphGenerator implements RandomGraphGeneratorInt {
         }
 
         //Ajout des arêtes
-        SecureRandom randGen = new SecureRandom();
+        Random randGen = new Random();
         int N = 0;
         if(n < 10)
             N = (int)Math.pow(n, 4);
@@ -38,7 +39,7 @@ public class RandomGraphGenerator implements RandomGraphGeneratorInt {
                 if(proba < p){
                     try {
                         //System.out.print("a");
-                        result.addEdge(i, j, 1 + randGen.nextInt(N));
+                        result.addEdgeSURE(i, j, 1 + randGen.nextInt(N));
                     } catch (VertexNotFoundException | EdgeAlreadyExistException e) {System.out.println("Erreur lors de la génération des arêtes." + e.getMessage()); }
                 }
 
