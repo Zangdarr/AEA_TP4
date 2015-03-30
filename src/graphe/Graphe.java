@@ -77,7 +77,7 @@ public class Graphe implements GrapheInt {
         if(!list_vertex.containsKey(v2.getId()))
             list_vertex.put(v2.getId(), v2);
         
-        addEdge(v1, v2, edge.getPoids());
+        addEdgeSURE(v1, v2, edge.getPoids());
     }
     
     @Override
