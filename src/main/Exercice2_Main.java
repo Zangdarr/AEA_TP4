@@ -1,20 +1,20 @@
 package main;
 
-import java.io.IOException;
-
 import exceptions.EdgeAlreadyExistException;
 import exceptions.GrapheException;
 import exceptions.VertexAlreadyExistException;
 import exceptions.VertexNotFoundException;
 import graphe.Graphe;
-import graphe.RandomGraphGenerator;
+
+import java.io.IOException;
+
 import tools.GraphTools;
 import tools.MSTTools;
 
 public class Exercice2_Main {
 
     public static void main(String[] args) {
-        exemplePRIM();
+        exemplePRIM("1000vertex_100pctedges.gph");
     }
     
     
@@ -22,11 +22,11 @@ public class Exercice2_Main {
     
     
     
-    public static void exemplePRIM(){
+    public static void exemplePRIM(String graphFileName){
         System.out.println("PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  ");
         Graphe g = new Graphe();
         try {
-            g = GraphTools.fileToGraph("1000vertex_100pctedges.gph");
+            g = GraphTools.fileToGraph(graphFileName);
         } catch (NumberFormatException | IOException
                 | VertexAlreadyExistException | VertexNotFoundException
                 | EdgeAlreadyExistException e2) {
@@ -48,11 +48,11 @@ public class Exercice2_Main {
 
     }
     
-    public static void exempleKRUSKAL(){
+    public static void exempleKRUSKAL(String graphFileName){
         System.out.println("KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  ");
         Graphe g = null;
         try {
-            g = GraphTools.fileToGraph("1000vertex_100pctedges.gph");
+            g = GraphTools.fileToGraph(graphFileName);
         } catch (NumberFormatException | IOException
                 | VertexAlreadyExistException | VertexNotFoundException
                 | EdgeAlreadyExistException e2) {
