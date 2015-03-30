@@ -47,13 +47,35 @@ public class Exercice2_Main {
         System.out.println("PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  ");
 
     }
+    
+    public static void exempleKRUSKAL(){
+        System.out.println("KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  ");
+        Graphe g = null;
+        try {
+            g = GraphTools.fileToGraph("1000vertex_100pctedges.gph");
+        } catch (NumberFormatException | IOException
+                | VertexAlreadyExistException | VertexNotFoundException
+                | EdgeAlreadyExistException e2) {
+            System.out.println(e2.getMessage());
+        }
+        
+        Graphe result = new Graphe();
+        try {
+            result = MSTTools.runKRUSKAL(g);
+            System.out.println("Initialisation, " + g.toStringMinimal() + "\n\nResul of KRUSKAL, " + result.toStringMinimal());
+        } catch (VertexNotFoundException | EdgeAlreadyExistException | GrapheException e1) {System.err.println("Erreur lors de l'application de l'algorithme KRUSKAL  : " + e1.getMessage());}
         
         
         try {
-            GraphTools.graphToFile("init_graphe", g);
-            GraphTools.graphToFile("export_exo2", result);
+            GraphTools.graphToFile("init_KRUSKAL.gph", g);
+            GraphTools.graphToFile("result_KRUSKAL.gph", result);
         } catch (IOException e) {System.err.println("Erreur lors de la création d'un fichier graphe. " + e.getMessage());}
+    
+        System.out.println("KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  ");
+
     }
+    
+    
     
     
 
