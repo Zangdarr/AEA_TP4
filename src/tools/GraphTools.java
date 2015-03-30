@@ -42,7 +42,7 @@ public class GraphTools {
                 vertex_2 = Integer.parseInt(tab[i]);
                 if(!tmp.vertexContains(vertex_2))
                     tmp.addVertexNumber(vertex_2);
-                tmp.addEdge(tmp.getVertex(vertex_1), tmp.getVertex(vertex_2), Integer.parseInt(tab[i+1]));
+                tmp.addEdgeSURE(tmp.getVertex(vertex_1), tmp.getVertex(vertex_2), Integer.parseInt(tab[i+1]));
             }
             
         }
