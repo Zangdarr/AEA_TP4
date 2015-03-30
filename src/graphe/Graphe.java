@@ -16,6 +16,7 @@ public class Graphe implements GrapheInt {
     //ATTRIBUTS
     private HashMap<Integer,Vertex> list_vertex;
     private ArrayList<Edge> list_edges;
+    private int nextEdgeID;
     
     
     //CONSTRUCTEURS
@@ -27,6 +28,7 @@ public class Graphe implements GrapheInt {
         super();
         this.list_edges  = new ArrayList<Edge>();
         this.list_vertex = new HashMap<Integer,Vertex>();
+        this.nextEdgeID = 1;
     }
 
     /**
@@ -86,9 +88,9 @@ public class Graphe implements GrapheInt {
         
         //key calculator
         boolean isV1V2 = v1.getId() < v2.getId();
-        String key_str = (isV1V2)? v1.getString() + v2.getString() : v2.getString() + v1.getString();
-        int key_int = Integer.parseInt(key_str);
-        
+        //String key_str = (isV1V2)? v1.getString() + "9" + v2.getString() + "99" + v2.getString() : v2.getString() + "9" + v1.getString() + "99" + v1.getString();
+        //int key_int = Integer.parseInt(key_str);
+        int key_int = nextEdgeID++;
         //if the key already exist into the list
         if(edgeContains(key_int))
             throw new EdgeAlreadyExistException();
@@ -130,8 +132,9 @@ public class Graphe implements GrapheInt {
 
         //key calculator
         boolean isIJ = i<j;
-        String key_str = (isIJ)? i+""+j : j+""+i;
-        int key_int = Integer.parseInt(key_str);
+        //String key_str = (isIJ)? i+"9"+j+"99" + j : j+"9"+i+"99"+i;
+        //int key_int = Integer.parseInt(key_str);
+        int key_int = nextEdgeID++;
         
         //if the key already exist into the list
         if(edgeContains(key_int))
