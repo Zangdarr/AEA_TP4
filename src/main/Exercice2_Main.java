@@ -14,7 +14,7 @@ import tools.MSTTools;
 public class Exercice2_Main {
 
     public static void main(String[] args) {
-        exemplePRIM("1000vertex_100pctedges.gph");
+        callPRIM("1000vertex_100pctedges.gph");
     }
     
     
@@ -22,7 +22,7 @@ public class Exercice2_Main {
     
     
     
-    public static void exemplePRIM(String graphFileName){
+    public static void callPRIM(String graphFileName){
         System.out.println("PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  ");
         Graphe g = new Graphe();
         try {
@@ -48,7 +48,7 @@ public class Exercice2_Main {
 
     }
     
-    public static void exempleKRUSKAL(String graphFileName){
+    public static void callKRUSKAL(String graphFileName){
         System.out.println("KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  KRUSKAL  ");
         Graphe g = null;
         try {
