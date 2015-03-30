@@ -181,49 +181,49 @@ public class MSTTools {
         boolean notEND = true;
 
         int bestWeight = Integer.MAX_VALUE;
-        int bestEdge   = -1;
+        Edge bestEdge = null;
+        boolean v1 = false;
 
         //tant qu'on a pas finit
+        int y = 0;
         while(notEND){
-
+            int pos_current_edge = 0,
+                pos_best_edge =0;
+            System.out.println("Nombre d'arêtes trouvées : " + y++);
             //si on ne trouve pas d'arête lors de la boucle for -> FIN
             notEND = false;
 
             //on cherche la prochaine arête extérieure de point minimum adjacente à l'ensemble de sommet déjà présent.
-            for(int i = 0; i<list_edge.size(); ++i){
-                Edge tmp_edge = list_edge.get(i);
+            for(Iterator<Edge> it = list_edge.iterator(); it.hasNext();){
+                Edge tmp_edge = it.next(); 
+                pos_current_edge++;
                 boolean containsV1 = vertex_marked.contains(tmp_edge.getVertex_1().getId()),
                         containsV2 = vertex_marked.contains(tmp_edge.getVertex_2().getId());
                 if((containsV1 || containsV2) && (!containsV1 || !containsV2)){
                     int tmp_poids = tmp_edge.getPoids();
                     if(tmp_poids < bestWeight){
+                        v1 = containsV1;
                         bestWeight = tmp_poids;
-                        bestEdge = i;
+                        bestEdge = tmp_edge;
+                        pos_best_edge = pos_current_edge;
                         notEND = true;
                     }
                 }
             }
-            
+
             if(notEND){
-                //l'arête optimal
-                Edge selected_edge = list_edge.get(bestEdge);
-                System.out.println(selected_edge.toString());
-                //on l'ajoute au graphe
-                result.addEdge(selected_edge);
+                //on ajoute bestEdge au graphe
+                result.addEdge(bestEdge);
                 //on la retire des arêtes restantes
-                list_edge.remove(bestEdge);
+                list_edge.remove(pos_best_edge);
                 //on met à jour la liste des vertex marqués
-                int newVertexId = (vertex_marked.contains(selected_edge.getVertex_1().getId()))?selected_edge.getVertex_2().getId():selected_edge.getVertex_1().getId(); 
+                int newVertexId = (v1)?bestEdge.getVertex_2().getId():bestEdge.getVertex_1().getId(); 
                 vertex_marked.add(newVertexId);
                 //réinitisation du meilleur poids au max
                 bestWeight = Integer.MAX_VALUE;
             }
-            
+
         }
-        
-        
-        
-        
         return result;
     }
 }
