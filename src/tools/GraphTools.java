@@ -27,7 +27,7 @@ public class GraphTools {
      */
     public static Graphe fileToGraph(String filename) throws IOException, NumberFormatException, VertexAlreadyExistException, VertexNotFoundException, EdgeAlreadyExistException{
         Graphe tmp = new Graphe();
-        
+        System.out.println("From file " + filename + " to graphe..." );
         BufferedReader buff = new BufferedReader(new FileReader(filename));
         String line = "";
         String[] tab;
@@ -49,12 +49,15 @@ public class GraphTools {
         
         buff.close();
         
+        System.out.println("done.");
         return tmp;
     }
 
 
     
     public static void graphToFile(String filename, Graphe g) throws IOException {
+        System.out.println("From graphe to file" + filename +"..." );
+
         Iterator<Edge> it = g.getSortedEdgeIteratorByFirstVertex();
         
         StringBuffer graphe_txt = new StringBuffer("1");
@@ -78,5 +81,6 @@ public class GraphTools {
         
         p.write(graphe_txt.toString());
         p.close();
+        System.out.println("done.");
     }
 }
