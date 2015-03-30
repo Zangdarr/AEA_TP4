@@ -101,6 +101,27 @@ public class Graphe implements GrapheInt {
 
     }
 
+    public void addEdgeSURE(int i, int j, int p) throws VertexNotFoundException, EdgeAlreadyExistException {
+        boolean isIJ = i<j;
+        int key_int = nextEdgeID++;
+        //add this edge
+        if(isIJ)
+            this.list_edges.add(new Edge(list_vertex.get(i), list_vertex.get(j), p,key_int ));
+        else
+            this.list_edges.add(new Edge(list_vertex.get(j), list_vertex.get(i), p,key_int ));
+
+    }
+    public void addEdgeSURE(Vertex v1, Vertex v2, int p) throws VertexNotFoundException, EdgeAlreadyExistException {
+        boolean isIJ = v1.getId()<v2.getId();
+        int key_int = nextEdgeID++;
+        //add this edge
+        if(isIJ)
+            this.list_edges.add(new Edge(v1, v2, p,key_int ));
+        else
+            this.list_edges.add(new Edge(v2, v1, p,key_int ));
+
+    }
+    
     @Override
     public void addEdge(int i, int j, int p) throws VertexNotFoundException, EdgeAlreadyExistException {
         //If the vertex does not exist
