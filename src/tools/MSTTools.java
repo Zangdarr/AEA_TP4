@@ -170,6 +170,7 @@ public class MSTTools {
      * @throws VertexNotFoundException 
      */
     public static Graphe runPRIM(final Graphe g) throws VertexNotFoundException, EdgeAlreadyExistException {
+        System.out.println("PRIM's running...");
         long start = System.nanoTime();
         Graphe result = new Graphe();
 
@@ -226,7 +227,7 @@ public class MSTTools {
 
         }
         long end = System.nanoTime();
-        System.out.println("Temps d'exécution de PRIM : " + (end-start)/Math.pow(10, 9));
+        System.out.println("done.\nExecution time : " + (end-start)/Math.pow(10, 9));
         return result;
     }
 }
