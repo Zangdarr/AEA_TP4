@@ -102,10 +102,14 @@ public class MSTTools {
             throw new GrapheException();
         result.addEdge(it.next());
 
+        ArrayList<Edge> copy = new ArrayList<Edge>(result.getEdgeList());
         for (Iterator<Edge> iterator = it;iterator.hasNext();) {
             Edge edge = iterator.next();
-            if(isAcyclique(result.getEdgeList(), edge))
+            if(isAcyclique(copy, edge)){
+                System.out.println(edge.toString());
                 result.addEdge(edge);
+                copy = new ArrayList<Edge>(result.getEdgeList());                
+            }
         }
 
         long end = System.nanoTime();
@@ -122,14 +126,15 @@ public class MSTTools {
 
 
     private static boolean searchCycle(int origin, int current_id, int previous_id,  ArrayList<Edge> edgeList) {
+        boolean bool = false;
         for (Iterator<Integer> iterator = getVertexNeighbors(edgeList,current_id ,previous_id); iterator.hasNext();){
             int id = iterator.next();
             if(origin == id)
                 return true;
             else
-                return searchCycle(origin, id, current_id, edgeList);
+                 bool |= searchCycle(origin, id, current_id, edgeList);
         }
-        return false;
+        return bool;
     }
 
     public static Iterator<Integer> getVertexNeighbors(ArrayList<Edge> edgeList, int current_id, int previous_id){
@@ -139,7 +144,7 @@ public class MSTTools {
             Edge edge = iterator.next();
             if(edge.getVertex_1().getId() == current_id && edge.getVertex_2().getId() != previous_id)
                 result.add(edge.getVertex_2().getId());
-            if(edge.getVertex_2().getId() == current_id && edge.getVertex_2().getId() != previous_id)
+            if(edge.getVertex_2().getId() == current_id && edge.getVertex_1().getId() != previous_id)
                 result.add(edge.getVertex_1().getId());
         }
         return result.iterator();
