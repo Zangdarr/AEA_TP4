@@ -14,7 +14,7 @@ import tools.MSTTools;
 public class Exercice2_Main {
 
     public static void main(String[] args) {
-        callPRIM("1000vertex_100pctedges.gph");
+        callKRUSKAL("init_KRUSKAL.gph");
     }
     
     
