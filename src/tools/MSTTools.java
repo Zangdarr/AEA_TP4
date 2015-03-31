@@ -9,10 +9,13 @@ import graphe.Graphe;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class MSTTools {
 
+    static boolean hasCycle = false;
     /**
      * Applique un algorithme de calcul d'arbre recouvrant de poids minimum sur un graphe. Cette algorithme est inspiré de PRIM et KRUSKAL
      * @param g : graphe sur lequel sera appliqué l'algorithme
@@ -72,17 +75,17 @@ public class MSTTools {
     }
 
 
-    
-    
-    
-    
+
+
+
+
     /*************************************************************************************************************************************/
     /*************************************************************************************************************************************/
     /*************************************************************************************************************************************/
     /*************************************************************************************************************************************/
     /*************************************************************************************************************************************/
-    
-    
+
+
     /**
      * Applique l'algorithme de calcul d'arbre recouvrant de poids minimum de KRUSKAL sur un graphe
      * @param g : graphe sur lequel sera appliqué l'algorithme
@@ -94,7 +97,7 @@ public class MSTTools {
     public static Graphe runKRUSKAL(final Graphe g) throws VertexNotFoundException, EdgeAlreadyExistException, GrapheException {
         System.out.println("KRUSKAL's running...");
         long start = System.nanoTime();
-        
+
         /****** INIT *****/
         Graphe result = new Graphe();
         Iterator<Edge> it = g.getSortedEdgeIterator();
@@ -103,10 +106,18 @@ public class MSTTools {
         result.addEdge(it.next());
 
         ArrayList<Edge> copy = new ArrayList<Edge>(result.getEdgeList());
-        for (Iterator<Edge> iterator = it;iterator.hasNext();) {
+        for (Iterator<Edge> iterator = it;iterator.hasNext() && result.getEdgeQuantity()  != g.getVertexQuantity()-1;) {
             Edge edge = iterator.next();
-            if(isAcyclique(copy, edge)){
-                System.out.println(edge.toString());
+            System.out.println(result.getEdgeQuantity());
+            boolean result_contains_v1 = result.vertexContains(edge.getVertex_1().getId()),
+                    result_contains_v2 = result.vertexContains(edge.getVertex_2().getId());
+            
+            //si l'arête ajoutée à un sommet ou les deux non existant dans le graphe -> AC
+            if(! (result_contains_v1 && result_contains_v2)){
+                result.addEdge(edge);
+                copy = new ArrayList<Edge>(result.getEdgeList());                
+            }
+            else if(isAcyclique(copy, edge)){
                 result.addEdge(edge);
                 copy = new ArrayList<Edge>(result.getEdgeList());                
             }
@@ -119,22 +130,37 @@ public class MSTTools {
     }
     private static boolean isAcyclique(ArrayList<Edge> edgeList, Edge edge) {
         edgeList.add(edge);
-        boolean hasCycle = searchCycle(edge.getVertex_1().getId(), edge.getVertex_1().getId(), edge.getVertex_2().getId(), edgeList);
+        //System.out.println(edge.toString());
+        boolean hasCycle = searchCycle(edge.getVertex_1().getId(), edge.getVertex_2().getId(), edgeList);
 
         return !hasCycle;
     }
 
 
-    private static boolean searchCycle(int origin, int current_id, int previous_id,  ArrayList<Edge> edgeList) {
-        boolean bool = false;
-        for (Iterator<Integer> iterator = getVertexNeighbors(edgeList,current_id ,previous_id); iterator.hasNext();){
-            int id = iterator.next();
-            if(origin == id)
-                return true;
-            else
-                 bool |= searchCycle(origin, id, current_id, edgeList);
+    private static boolean searchCycle(int origin,int from,ArrayList<Edge> edgeList) {
+        HashMap<Integer,Integer> marked_vertex_from = new HashMap<Integer,Integer>();
+        ArrayList<Integer> marked_vertex_id = new ArrayList<Integer>();
+        LinkedList<Integer> marked_neighbors_uncheck = new LinkedList<Integer>();
+        marked_vertex_id.add(origin);
+        marked_vertex_from.put(origin, from);
+        marked_neighbors_uncheck.add(origin);
+        
+        while(! marked_neighbors_uncheck.isEmpty()){
+            int checking_id = marked_neighbors_uncheck.pollFirst();
+            for (Iterator<Integer> iterator = getVertexNeighbors(edgeList, checking_id, marked_vertex_from.get(checking_id)); iterator.hasNext();) {
+                Integer ngbor = iterator.next();
+                if(marked_vertex_id.contains(ngbor))
+                    return true;
+                marked_vertex_id.add(ngbor);
+                marked_vertex_from.put(ngbor,checking_id);
+                marked_neighbors_uncheck.add(ngbor);
+            }
+            
         }
-        return bool;
+        
+        return false;
+        
+        
     }
 
     public static Iterator<Integer> getVertexNeighbors(ArrayList<Edge> edgeList, int current_id, int previous_id){
@@ -151,23 +177,23 @@ public class MSTTools {
     }
 
 
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     /*************************************************************************************************************************************/
     /*************************************************************************************************************************************/
     /*************************************************************************************************************************************/
     /*************************************************************************************************************************************/
     /*************************************************************************************************************************************/
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
     /**
      * Applique l'algorithme de calcul d'arbre recouvrant de poids minimum de KRUSKAL sur un graphe
      * @param g : graphe sur lequel sera appliqué l'algorithme
@@ -196,8 +222,8 @@ public class MSTTools {
         int y = 0;
         while(notEND){
             int pos_current_edge = 0,
-                pos_best_edge =0;
-            System.out.println("Nombre d'arêtes trouvées : " + y++);
+                    pos_best_edge =0;
+            //System.out.println("Nombre d'arêtes trouvées : " + y++);
             //si on ne trouve pas d'arête lors de la boucle for -> FIN
             notEND = false;
 
