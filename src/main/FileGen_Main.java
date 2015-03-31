@@ -13,7 +13,7 @@ public class FileGen_Main {
         System.out.println("START");
         Graphe g = gen.generateErdosRenyiGraph(1000,(float) 1.0);
         try {
-            GraphTools.graphToFile("1000vertex_100pctedges.gph", g);
+            GraphTools.graphToFile("1000x1000.gph", g);
         } catch (IOException e) {
             System.err.println("Erreur lors de la création d'un fichier graphe. " + e.getMessage());
         }
