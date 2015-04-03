@@ -108,17 +108,18 @@ public class MSTTools {
         ArrayList<Edge> copy = new ArrayList<Edge>(result.getEdgeList());
         for (Iterator<Edge> iterator = it;iterator.hasNext() && result.getEdgeQuantity()  != g.getVertexQuantity()-1;) {
             Edge edge = iterator.next();
-            System.out.println(result.getEdgeQuantity());
             boolean result_contains_v1 = result.vertexContains(edge.getVertex_1().getId()),
                     result_contains_v2 = result.vertexContains(edge.getVertex_2().getId());
             
             //si l'arête ajoutée à un sommet ou les deux non existant dans le graphe -> AC
             if(! (result_contains_v1 && result_contains_v2)){
                 result.addEdge(edge);
+                System.out.println(result.getEdgeQuantity());
                 copy = new ArrayList<Edge>(result.getEdgeList());                
             }
             else if(isAcyclique(copy, edge)){
                 result.addEdge(edge);
+                System.out.println(result.getEdgeQuantity());
                 copy = new ArrayList<Edge>(result.getEdgeList());                
             }
         }
