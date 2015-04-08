@@ -115,13 +115,14 @@ public class MSTTools {
             if(! (result_contains_v1 && result_contains_v2)){
                 result.addEdge(edge);
                 System.out.println(result.getEdgeQuantity());
-                copy = new ArrayList<Edge>(result.getEdgeList());                
             }
             else if(isAcyclique(copy, edge)){
                 result.addEdge(edge);
                 System.out.println(result.getEdgeQuantity());
-                copy = new ArrayList<Edge>(result.getEdgeList());                
+
             }
+            copy = new ArrayList<Edge>(result.getEdgeList());
+
         }
 
         long end = System.nanoTime();
@@ -131,7 +132,6 @@ public class MSTTools {
     }
     private static boolean isAcyclique(ArrayList<Edge> edgeList, Edge edge) {
         edgeList.add(edge);
-        //System.out.println(edge.toString());
         boolean hasCycle = searchCycle(edge.getVertex_1().getId(), edge.getVertex_2().getId(), edgeList);
 
         return !hasCycle;
@@ -145,8 +145,8 @@ public class MSTTools {
         marked_vertex_id.add(origin);
         marked_vertex_from.put(origin, from);
         marked_neighbors_uncheck.add(origin);
-        
         while(! marked_neighbors_uncheck.isEmpty()){
+
             int checking_id = marked_neighbors_uncheck.pollFirst();
             for (Iterator<Integer> iterator = getVertexNeighbors(edgeList, checking_id, marked_vertex_from.get(checking_id)); iterator.hasNext();) {
                 Integer ngbor = iterator.next();
