@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MSTTools {
 
@@ -75,8 +76,85 @@ public class MSTTools {
     }
 
 
+    
+    
+    /*************************************************************************************************************************************/
+    /*************************************************************************************************************************************/
+    /*************************************************************************************************************************************/
+    /*************************************************************************************************************************************/
+    /*************************************************************************************************************************************/
 
+    /** OPTIMAL
+     * Applique l'algorithme de calcul d'arbre recouvrant de poids minimum de KRUSKAL sur un graphe
+     * @param g : graphe sur lequel sera appliqué l'algorithme
+     * @return
+     * @throws EdgeAlreadyExistException 
+     * @throws VertexNotFoundException 
+     * @throws GrapheException 
+     */
+    public static Graphe runKRUSKAL_OPTIMAL(final Graphe g) throws VertexNotFoundException, EdgeAlreadyExistException, GrapheException {
+        System.out.println("KRUSKAL's running...");
+        long start = System.nanoTime();
 
+        /****** INIT *****/
+        Graphe result = new Graphe();
+        Iterator<Edge> it = g.getSortedEdgeIterator();
+
+        HashMap<Integer,Integer> grouped_vertex = new HashMap<Integer,Integer>();
+        AtomicInteger next_new_group_number = new AtomicInteger();
+
+        for (Iterator<Edge> iterator = it;iterator.hasNext() && result.getEdgeQuantity()  != g.getVertexQuantity()-1;) {
+            Edge edge = iterator.next();
+            
+            if(isAcycliqueOptimum(grouped_vertex, edge,next_new_group_number)){
+                result.addEdge(edge);
+            }
+        }
+
+        long end = System.nanoTime();
+        System.out.println("done.\nExecution time : " + (end-start)/Math.pow(10, 9));
+
+        return result;
+    }
+
+    private static boolean isAcycliqueOptimum(HashMap<Integer,Integer> grouped_edges, Edge edge, AtomicInteger next_new_group_number) {
+        int vertexID1 = edge.getVertex_1().getId(),
+            vertexID2 = edge.getVertex_2().getId();
+        boolean containsVertex1 = grouped_edges.containsKey(vertexID1),
+                containsVertex2 = grouped_edges.containsKey(vertexID2);
+        
+        if(containsVertex1 && containsVertex2){ //si contient les deux vertex
+            //on recupere les groupes des deux vertex
+            int groupV1 = grouped_edges.get(vertexID1),
+                groupV2 = grouped_edges.get(vertexID2);
+            if(groupV1 == groupV2) { //si meme groupe => cycle
+                return false;
+            }
+            else { //groupe different => pas de cycle
+                //fusion des deux groupes avec l'ID de V1
+                for (Integer key : grouped_edges.keySet()) {
+                    if(grouped_edges.get(key) == groupV2)
+                        grouped_edges.put(key, groupV1);
+                }
+            }
+            
+        } else if(!containsVertex1 &&  !containsVertex2){ //si ne contient aucun des deux
+            //creation d'un nouveau groupe pour les deux sommets
+            int new_group = next_new_group_number.getAndIncrement();
+            grouped_edges.put(vertexID1, new_group);
+            grouped_edges.put(vertexID2, new_group);
+            
+        } else if(containsVertex1) { //si contient uniquement vertex1
+            //on ajoute V2 au groupe de V1
+            int groupV1 = grouped_edges.get(vertexID1);
+            grouped_edges.put(vertexID2, groupV1);
+        } else { // si contient uniquement vertex2
+          //on ajoute V1 au groupe de V2
+            int groupV2 = grouped_edges.get(vertexID2);
+            grouped_edges.put(vertexID1, groupV2);
+        }
+        return true;
+    }
 
 
     /*************************************************************************************************************************************/
@@ -86,7 +164,7 @@ public class MSTTools {
     /*************************************************************************************************************************************/
 
 
-    /**
+    /** NON OPTIMALE
      * Applique l'algorithme de calcul d'arbre recouvrant de poids minimum de KRUSKAL sur un graphe
      * @param g : graphe sur lequel sera appliqué l'algorithme
      * @return
