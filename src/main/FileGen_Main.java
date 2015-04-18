@@ -11,7 +11,7 @@ public class FileGen_Main {
     public static void main(String[] args) {
         
         //CONFIGURATION
-        int nbSommet = 10;
+        int nbSommet = 1000;
         float proba = (float) 1.0;
         String filename = nbSommet +"x"+ (int)(proba*100) +".gph";
         
