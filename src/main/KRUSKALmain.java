@@ -13,9 +13,19 @@ import graphe.Graphe;
 public class KRUSKALmain {
 
     public static void main(String[] args) {
-        callKRUSKAL("500x50.gph");
+        callKRUSKAL("4750x100.gph");
     }
     
+    public static Graphe callKRUSKAL(Graphe g){
+        
+            try {
+                return MSTTools.runKRUSKAL_OPTIMAL(g);
+            } catch (VertexNotFoundException | EdgeAlreadyExistException
+                    | GrapheException e) {
+                System.err.println("Le graphe n'existe pas.");
+            }
+        return null;
+    }
     
     public static void callKRUSKAL(String graphFileName){
         System.out.println("KRUSKAL OPTI  KRUSKAL OPTI KRUSKAL OPTI KRUSKAL OPTI KRUSKAL OPTI KRUSKAL OPTI KRUSKAL  ");
