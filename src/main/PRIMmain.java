@@ -1,6 +1,7 @@
 package main;
 
 import exceptions.EdgeAlreadyExistException;
+import exceptions.GrapheException;
 import exceptions.VertexAlreadyExistException;
 import exceptions.VertexNotFoundException;
 import graphe.Graphe;
@@ -13,9 +14,18 @@ import tools.MSTTools;
 public class PRIMmain {
 
     public static void main(String[] args) {
-        callPRIM("500x50.gph");
+        callPRIM("100x70.gph");
     }
     
+    public static Graphe callPRIM(Graphe g){
+        
+        try {
+            return MSTTools.runPRIM(g);
+        } catch (VertexNotFoundException | EdgeAlreadyExistException e) {
+            System.err.println("Le graphe n'existe pas.");
+        }
+        return null;
+    }
     
     public static void callPRIM(String graphFileName){
         System.out.println("PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  PRIM  ");
