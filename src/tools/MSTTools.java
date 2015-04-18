@@ -222,7 +222,7 @@ public class MSTTools {
         long start = System.nanoTime();
         Graphe result = new Graphe();
 
-        ArrayList<Edge> list_edge = g.getEdgeList();
+        ArrayList<Edge> list_edge = new ArrayList<Edge>(g.getEdgeList());
         Collections.shuffle(list_edge);
 
         ArrayList<Integer> vertex_marked = new ArrayList<Integer>();
@@ -237,16 +237,15 @@ public class MSTTools {
         //tant qu'on a pas finit
         int y = 0;
         while(notEND){
-            int pos_current_edge = 0,
-                    pos_best_edge =0;
+                     int      pos_best_edge =0;
             //System.out.println("Nombre d'arêtes trouvées : " + y++);
             //si on ne trouve pas d'arête lors de la boucle for -> FIN
             notEND = false;
 
             //on cherche la prochaine arête extérieure de point minimum adjacente à l'ensemble de sommet déjà présent.
-            for(Iterator<Edge> it = list_edge.iterator(); it.hasNext();){
-                Edge tmp_edge = it.next(); 
-                pos_current_edge++;
+            for(int pos_current_edge = 0; pos_current_edge< list_edge.size() ;pos_current_edge++){
+                Edge tmp_edge = list_edge.get(pos_current_edge); 
+                
                 boolean containsV1 = vertex_marked.contains(tmp_edge.getVertex_1().getId()),
                         containsV2 = vertex_marked.contains(tmp_edge.getVertex_2().getId());
                 if((containsV1 || containsV2) && (!containsV1 || !containsV2)){
