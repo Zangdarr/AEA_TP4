@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 import exceptions.EdgeAlreadyExistException;
 import exceptions.VertexAlreadyExistException;
@@ -219,6 +220,10 @@ public class Graphe implements GrapheInt {
     
     public ArrayList<Edge> getEdgeList(){
         return this.list_edges;
+    }
+
+    public Set<Integer> getVertexKeySet() {
+        return this.list_vertex.keySet();
     }
     
 }
