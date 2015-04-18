@@ -11,15 +11,11 @@ import java.io.IOException;
 import tools.GraphTools;
 import tools.MSTTools;
 
-public class Exercice2_Main {
+public class MSTmain {
 
     public static void main(String[] args) {
-        callKRUSKAL_OPTIMAL("2000x2000.gph");
+        callPRIM("500x50.gph");
     }
-    
-    
-    
-    
     
     
     public static void callPRIM(String graphFileName){
