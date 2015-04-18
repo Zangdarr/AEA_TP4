@@ -49,7 +49,9 @@ public class MSTTools {
         }
 
         long end = System.nanoTime();
-        System.out.println("done.\nExecution time : " + (end-start)/Math.pow(10, 9));
+        double executionTime = (end-start)/Math.pow(10, 9);
+        System.out.println("Kruskal_OPTIMAL MST done.\nExecution time : " + executionTime);
+        result.setExecutionTime(executionTime);
 
         return result;
     }
@@ -141,7 +143,9 @@ public class MSTTools {
         }
 
         long end = System.nanoTime();
-        System.out.println("done.\nExecution time : " + (end-start)/Math.pow(10, 9));
+        double executionTime = (end-start)/Math.pow(10, 9);
+        System.out.println("Kruskal MST done.\nExecution time : " + executionTime);
+        result.setExecutionTime(executionTime);
 
         return result;
     }
@@ -274,7 +278,9 @@ public class MSTTools {
 
         }
         long end = System.nanoTime();
-        System.out.println("done.\nExecution time : " + (end-start)/Math.pow(10, 9));
+        double executionTime = (end-start)/Math.pow(10, 9);
+        System.out.println("Prim MST done.\nExecution time : " + executionTime);
+        result.setExecutionTime(executionTime);
         return result;
     }
 }
