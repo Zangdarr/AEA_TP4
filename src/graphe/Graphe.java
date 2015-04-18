@@ -18,6 +18,7 @@ public class Graphe implements GrapheInt {
     private HashMap<Integer,Vertex> list_vertex;
     private ArrayList<Edge> list_edges;
     private int nextEdgeID;
+    private double executionTime;
     
     
     //CONSTRUCTEURS
@@ -224,6 +225,15 @@ public class Graphe implements GrapheInt {
 
     public Set<Integer> getVertexKeySet() {
         return this.list_vertex.keySet();
+    }
+
+    public void setExecutionTime(double executionTime) {
+        this.executionTime = executionTime;
+        
+    }
+    public double getExecutionTime() {
+        return this.executionTime;
+        
     }
     
 }
